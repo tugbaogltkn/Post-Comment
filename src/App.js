@@ -11,7 +11,7 @@ class App extends Component {
         };
     }
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/posts?id=2')
+        fetch('https://jsonplaceholder.typicode.com/posts')
             .then(res => res.json())
             .then((data1) => {
                 this.setState({ posts: data1 })
