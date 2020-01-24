@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Contacts from './components/posts';
+import Posts from './components/posts';
 
 class App extends Component {
 
@@ -13,15 +13,15 @@ class App extends Component {
     componentDidMount() {
         fetch('https://jsonplaceholder.typicode.com/posts')
             .then(res => res.json())
-            .then((data1) => {
-                this.setState({ posts: data1 })
-                for(let i=0; i<= data1.length;i++)
+            .then((posts) => {
+                this.setState({ posts: posts })
+                for(let i=0; i<= posts.length; i++)
                 {
                     const commentURL = 'https://jsonplaceholder.typicode.com/comments?postId='+ i;
                     fetch(commentURL)
                         .then(res => res.json())
-                        .then((data2) => {
-                            this.setState({ comments: data2 });
+                        .then((comments) => {
+                            this.setState({ comments: comments });
                         })
                         .catch(console.log)
                 }
@@ -30,7 +30,7 @@ class App extends Component {
     }
     render() {
         return (
-            <Contacts posts={this.state.posts} comments={this.state.comments} />
+            <Posts posts={this.state.posts} comments={this.state.comments} />
         )
     }
 }
